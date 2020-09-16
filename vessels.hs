@@ -52,20 +52,12 @@ generateAllMoves vesselCount = filter notSame [(x, y) | x <- [0 .. vesselCount -
 isNotInVisited :: [State] -> State -> Bool
 isNotInVisited visited state = not (elem state visited)
 
---tests if given move causes overflow and if so, the move is not possible
-isMovePossible :: (Int, Int) -> State -> Bool
-isMovePossible (from, to) state = not (isOverflown fromEl toEl)
-  where
-    fromEl = state !! from
-    toEl = state !! to
-    isOverflown (Vessel fromVol fromCont) (Vessel toVol toCont) = ((fromCont + toCont) > toVol)
-
 --outputs vessels after the transfer as a tuple (from, to)
 transferVessels :: Vessel -> Vessel -> (Vessel, Vessel)
 transferVessels (Vessel fromVolume fromContents) (Vessel toVolume toContents) = (newFromVessel, newToVessel)
   where
     newFromVessel = (Vessel fromVolume 0)
-    newToVessel = (Vessel toVolume (fromContents + toContents))
+    newToVessel = (Vessel toVolume (min (fromContents + toContents) toVolume))
 
 --replaces a vessel (at given index) in a state with a new vessel
 replaceNth :: Int -> Vessel -> State -> State
@@ -76,9 +68,7 @@ replaceNth n newVal (x : xs)
 
 --outputs a new state after given transfer
 transfer :: State -> (Int, Int) -> State
-transfer state (from, to)
-  | isMovePossible (from, to) state = replaceNth to (takeTo transferredVessels) (replaceNth from (takeFrom transferredVessels) state)
-  | otherwise = [] --Invalid State
+transfer state (from, to) = replaceNth to (takeTo transferredVessels) (replaceNth from (takeFrom transferredVessels) state)
   where
     oldFromVessel = state !! from
     oldToVessel = state !! to
@@ -165,12 +155,12 @@ printState state = printStateInner state 1
 
 printResultInner :: [State] -> Int -> IO ()
 printResultInner [] _ = return ()
-printResultInner (x : rest) 1 = do
+printResultInner (x : rest) 0 = do
   putStrLn "SOLUTION:"
-  putStr "1.step : "
+  putStr "initial state : "
   printState x
   putStrLn ""
-  printResultInner rest 2
+  printResultInner rest 1
 printResultInner (x : rest) order = do
   putStr (show order)
   putStr ".step : "
@@ -182,7 +172,7 @@ printResult :: [State] -> IO ()
 printResult [] =
   putStrLn "No solution found"
 printResult result =
-  printResultInner result 1
+  printResultInner result 0
 
 --OUTPUT PRINT FUNCTIONS - end
 

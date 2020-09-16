@@ -10,7 +10,27 @@
 4.step : 1-(volume:1,content:0) 2-(volume:2,content:0) 3-(volume:3,content:0) 4-(volume:4,content:3)
 
 #input:
+5 5 0
+2 0 0
+3 0 2
+#output:
+1.step : 1-(volume:5,content:5) 2-(volume:2,content:0) 3-(volume:3,content:0)
+2.step : 1-(volume:5,content:0) 2-(volume:2,content:2) 3-(volume:3,content:0) 
+3.step : 1-(volume:5,content:0) 2-(volume:2,content:0) 3-(volume:3,content:2)
 
+#input:
+5 0 4
+10 10 0
+1 1 0
+1 1 0
+3 0 0
+4 0 0
+#output:
+initial state : 1-(volume:5,content:0) 2-(volume:10,content:10) 3-(volume:1,content:1) 4-(volume:1,content:1) 5-(volume:3,content:0) 6-(volume:4,content:0)
+1.step : 1-(volume:5,content:0) 2-(volume:10,content:0) 3-(volume:1,content:1) 4-(volume:1,content:1) 5-(volume:3,content:3) 6-(volume:4,content:0)
+2.step : 1-(volume:5,content:1) 2-(volume:10,content:0) 3-(volume:1,content:0) 4-(volume:1,content:1) 5-(volume:3,content:3) 6-(volume:4,content:0)
+3.step : 1-(volume:5,content:1) 2-(volume:10,content:0) 3-(volume:1,content:0) 4-(volume:1,content:0) 5-(volume:3,content:3) 6-(volume:4,content:0)
+4.step : 1-(volume:5,content:4) 2-(volume:10,content:0) 3-(volume:1,content:0) 4-(volume:1,content:0) 5-(volume:3,content:0) 6-(volume:4,content:0)
 
 #input:
 1 1 0

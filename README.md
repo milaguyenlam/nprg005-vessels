@@ -3,7 +3,7 @@
 ## Problem description
 
 - There are N vessels, their volume, initial filling and final filling. Create a program that finds the shortest sequence from the initial state to the final state.
-- Transfer from one vessel to another is only possible if the sum of contents from both vessels is not larger than the volume of the vessel that it was being transferred to.
+- Transfer from one vessel to another (vessel that it is poured from has to be completely emptied, overflows are allowed though)
 
 ## My solution
 

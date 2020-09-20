@@ -3,11 +3,13 @@
 ## Problem description
 
 - There are N vessels, their volume, initial filling and final filling. Create a program that finds the shortest sequence from the initial state to the final state.
-- Transfer from one vessel to another (vessel that it is poured from has to be completely emptied, overflows are allowed though)
+- Transfers from one vessel to another are allowed under following conditions
+  - vessel that it is poured from has to be completely emptied
+  - overflows are allowed though
 
 ## My solution
 
-I used BFS algorithm, where nodes are a representation of vessels (their fillings) and edges represent transfers betweem them. Program ended succesfully when BFS algorithm reached the final filling, otherwise failed when the queue got empty.
+I used BFS algorithm, where nodes are a representation of a given set of vessels (their fillings) and edges represent transfers between them. Program ends succesfully when BFS algorithm reaches the final filling, otherwise fails when the queue is empty.
 
 For more information check out comments in the code.
 
